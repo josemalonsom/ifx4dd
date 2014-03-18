@@ -1,8 +1,8 @@
 {
-    "name": "josemalonsom/Ifx4dd",
+    "name": "josemalonsom/ifx4dd",
     "description": "Informix Platform for Doctrine DBAL",
     "keywords": ["informix", "doctrine", "dbal", "database", "persistence", "queryobject"],
-    "homepage": "http://www.github.com/josemalonsom/Ifx4dd",
+    "homepage": "http://www.github.com/josemalonsom/ifx4dd",
     "license": "MIT",
     "authors": [
         {"name": "Jose M. Alonso M.", "email": "josemalonsom@yahoo.es", "role": "monkey hitting keys"}
