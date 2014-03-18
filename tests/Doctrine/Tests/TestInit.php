@@ -22,16 +22,16 @@ if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
 
 /* @var $classLoader \Composer\Autoload\ClassLoader */
 $classLoader->add('Doctrine\\Tests\\', __DIR__ . '/../../');
-unset($classLoader);
 
-$testInitDbal = __DIR__ . '/../../../vendor/doctrine/dbal/tests/Doctrine/Tests/TestInit.php';
+$dirTestsDbal = __DIR__ . '/../../../vendor/doctrine/dbal/tests/';
 
-if (file_exists($testInitDbal)) {
-  require_once $testInitDbal;
+if (file_exists($dirTestsDbal)) {
+  $classLoader->add('Doctrine\\Tests\\', $dirTestsDbal);
 } else {
     throw new \Exception(
-        'Can\'t find the TestInit.php of the Doctrine\DBAL tests: ' . $testInitDbal
+        'Can\'t find the tests directory of Doctrine\DBAL: ' . $dirTestsDbal
         . ': You need it to run the tests.'
     );
 }
 
+unset($classLoader);
