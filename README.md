@@ -23,6 +23,7 @@ If you don't already have the PDO\_INFORMIX extension for PHP you need install i
 sure that the extension works correctly before continue, you can do a quick
 connection test to your Informix server using the next example
 
+```php
     <?php
 
     $dsn = 'informix:'
@@ -40,6 +41,7 @@ connection test to your Informix server using the next example
     if ($con) {
       echo "The connection was successfully established\n";
     }
+```
 
 You also will need [composer](https://getcomposer.org) in order to install all
 the dependencies, if you don't have it install it first.
@@ -48,8 +50,10 @@ Download the code of the *Informix Platform for Doctrine DBAL* or clone it with
 git ```git clone https://github.com/josemalonsom/Ifx4dd.git```. Move to the
 directory where you have the sources and install dependencies with composer
 
+```bash
     $ cd Ifx4dd/
     $ composer install
+```
 
 it will install Doctrine\DBAL under the vendor directory and will create an
 autoloader class that you can find in the vendor/autoload.php file. The
@@ -75,6 +79,7 @@ Platform, the autoloader created by composer will load the modified version
 of the DriverManager with come with the Informix Platform in first place, this
 version adds *pdo_informix* as one of the possible drivers to use.
 
+```php
     <?php
 
     // We need to get the autoader
@@ -94,6 +99,7 @@ version adds *pdo_informix* as one of the possible drivers to use.
     );
 
     $connection = DriverManager::getConnection($connectionParams);
+```
 
 
 ###Creating a connection with the original DriverManager of DBAL###
@@ -101,6 +107,7 @@ version adds *pdo_informix* as one of the possible drivers to use.
 Use this when you already have a Doctrine\DBAL installation and you
 added the Informix Platform classes in last place.
 
+```php
     <?php
 
     require_once 'vendor/autoload.php';
@@ -119,6 +126,7 @@ added the Informix Platform classes in last place.
     );
 
     $connection = DriverManager::getConnection($connectionParams);
+```
 
 ##Delimited identifiers##
 
