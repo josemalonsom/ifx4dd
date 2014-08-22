@@ -1203,4 +1203,50 @@ class InformixPlatform extends AbstractPlatform
         return 'RENAME COLUMN ' . $tableName . '.' . $oldName
             . ' TO ' . $column->getQuotedName($this);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getDateArithmeticIntervalExpression($date, $operator, $interval, $unit)
+    {
+        $timeUnit = '';
+
+        switch($unit) {
+            case self::DATE_INTERVAL_UNIT_SECOND:
+                $timeUnit = 'SECOND';
+                break;
+
+            case self::DATE_INTERVAL_UNIT_MINUTE:
+                $timeUnit = 'MINUTE';
+                break;
+
+            case self::DATE_INTERVAL_UNIT_HOUR:
+                $timeUnit = 'HOUR';
+                break;
+
+            case self::DATE_INTERVAL_UNIT_DAY:
+                $timeUnit = 'DAY';
+                break;
+
+            case self::DATE_INTERVAL_UNIT_WEEK:
+                $timeUnit = 'DAY';
+                $interval *= 7;
+                break;
+
+            case self::DATE_INTERVAL_UNIT_MONTH:
+                $timeUnit = 'MONTH';
+                break;
+
+            case self::DATE_INTERVAL_UNIT_QUARTER:
+                $timeUnit = 'MONTH';
+                $interval *= 3;
+                break;
+
+            case self::DATE_INTERVAL_UNIT_YEAR:
+                $timeUnit = 'YEAR';
+                break;
+        }
+
+        return "$date $operator INTERVAL ($interval)  $timeUnit(9) TO $timeUnit";
+    }
 }
