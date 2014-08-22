@@ -560,4 +560,20 @@ class InformixPlatformTest extends AbstractPlatformTestCase
             $this->_platform->getListTableConstraintsSQL('test_table')
         );
     }
+
+    public function getQuotedAlterTableRenameColumnSQL()
+    {
+        return array(
+            'RENAME COLUMN mytable.unquoted1 TO unquoted',
+            'RENAME COLUMN mytable.unquoted2 TO "where"',
+            'RENAME COLUMN mytable.unquoted3 TO "foo"',
+            'RENAME COLUMN mytable.create TO reserved_keyword',
+            'RENAME COLUMN mytable.table TO "from"',
+            'RENAME COLUMN mytable.select TO "bar"',
+            'RENAME COLUMN mytable.quoted1 TO quoted',
+            'RENAME COLUMN mytable.quoted2 TO "and"',
+            'RENAME COLUMN mytable.quoted3 TO "baz"',
+        );
+    }
+
 }
