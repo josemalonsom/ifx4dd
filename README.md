@@ -9,7 +9,7 @@ abstraction layer of the [Doctrine project](http://www.doctrine-project.org).
 ##DBAL versions supported##
 
 This branch attempts to follow the master branch of DBAL, there is a working
-version with DBAL 2.5.0-BETA3 here (https://github.com/josemalonsom/ifx4dd/tree/v0.1.0).
+version with DBAL 2.5.0-BETA3 here https://github.com/josemalonsom/ifx4dd/tree/v0.1.0 .
 
 
 ##Informix versions supported##
