@@ -603,4 +603,37 @@ class InformixPlatformTest extends AbstractPlatformTestCase
     {
         $this->markTestSkipped('Informix does not support column comments.');
     }
+
+    public function testGeneratesPartialIndexesSqlOnlyWhenSupportingPartialIndexes()
+    {
+        // SQL declaration for indexes on create table like statements is not
+        // supported on Informix so the InformixPlatform::getIndexDeclarationSQL()
+        // throws a exception. The testNotGeneratesPartialIndexesSql() method
+        // tests that the 'where' clause is not added.
+        $this->markTestSkipped('Does not work on InformixPlatform, see method comments.');
+    }
+
+    public function testNotGeneratesPartialIndexesSql()
+    {
+        $where = 'test IS NULL AND test2 IS NOT NULL';
+
+        $indexDef = new \Doctrine\DBAL\Schema\Index(
+            'name',
+            array('test', 'test2'),
+            false,
+            false,
+            array(),
+            array('where' => $where)
+        );
+
+        $expected = ' WHERE ' . $where;
+
+        $actuals = array();
+        $actuals []= $this->_platform->getUniqueConstraintDeclarationSQL('name', $indexDef);
+        $actuals []= $this->_platform->getCreateIndexSQL($indexDef, 'table');
+
+        foreach ($actuals as $actual) {
+            $this->assertStringEndsNotWith($expected, $actual, 'WHERE clause should NOT be present');
+        }
+    }
 }
