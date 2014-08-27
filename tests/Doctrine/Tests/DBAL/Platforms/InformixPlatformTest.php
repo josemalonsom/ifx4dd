@@ -594,6 +594,11 @@ class InformixPlatformTest extends AbstractPlatformTestCase
         $this->markTestSkipped('Platform does not support schemas.');
     }
 
+    public function testGetCommentOnColumnSQLWithQuoteCharacter()
+    {
+        $this->markTestSkipped('Informix does not support column comments.');
+    }
+
     public function testGetCommentOnColumnSQLWithoutQuoteCharacter()
     {
         $this->markTestSkipped('Informix does not support column comments.');
