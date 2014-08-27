@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7d3ed58e4bb12e015f65d4da99160fbb",
+    "hash": "4df9d3ba8e919748a291d1c701780d60",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -293,12 +293,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "e7a917e9eddd38e9fb37afd6ef95e1b542304a53"
+                "reference": "1c9c24a7e2295b71249ae2a719ce38861fccd551"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/14f730fb2e02df2c1daf8df09057b6771d5c226a",
-                "reference": "e7a917e9eddd38e9fb37afd6ef95e1b542304a53",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/1c9c24a7e2295b71249ae2a719ce38861fccd551",
+                "reference": "1c9c24a7e2295b71249ae2a719ce38861fccd551",
                 "shasum": ""
             },
             "require": {
@@ -356,7 +356,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2014-06-27 13:03:59"
+            "time": "2014-08-24 01:25:05"
         },
         {
             "name": "doctrine/inflector",
@@ -689,17 +689,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "980a02b40496a25ce38acb4d3f4949b77abf9f20"
+                "reference": "15a719c78af351a7b7cf3e390d28c9f23ae8fbbb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/980a02b40496a25ce38acb4d3f4949b77abf9f20",
-                "reference": "980a02b40496a25ce38acb4d3f4949b77abf9f20",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/15a719c78af351a7b7cf3e390d28c9f23ae8fbbb",
+                "reference": "15a719c78af351a7b7cf3e390d28c9f23ae8fbbb",
                 "shasum": ""
             },
             "require": {
                 "ext-tokenizer": "*",
                 "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.2"
             },
             "type": "library",
             "extra": {
@@ -709,7 +712,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "PHP/"
+                    "src/"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -719,8 +722,7 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sb@sebastian-bergmann.de",
-                    "role": "lead"
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Wrapper around PHP's tokenizer extension.",
@@ -728,7 +730,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2014-08-14 16:51:26"
+            "time": "2014-08-27 08:24:49"
         },
         {
             "name": "phpunit/phpunit",
@@ -912,9 +914,9 @@
 
     ],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "doctrine/dbal": 20
-    },
+    "stability-flags": [
+
+    ],
     "prefer-stable": false,
     "platform": {
         "ext-pdo_informix": ">=1.3.1"
