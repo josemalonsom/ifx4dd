@@ -576,4 +576,17 @@ class InformixPlatformTest extends AbstractPlatformTestCase
         );
     }
 
+    public function getQuotedAlterTableChangeColumnLengthSQL()
+    {
+        return array(
+            'ALTER TABLE mytable '
+            . 'MODIFY unquoted1 VARCHAR(255) NOT NULL, '
+            . 'MODIFY unquoted2 VARCHAR(255) NOT NULL, '
+            . 'MODIFY unquoted3 VARCHAR(255) NOT NULL, '
+            . 'MODIFY "create" VARCHAR(255) NOT NULL, '
+            . 'MODIFY "table" VARCHAR(255) NOT NULL, '
+            . 'MODIFY "select" VARCHAR(255) NOT NULL'
+        );
+    }
+
 }
