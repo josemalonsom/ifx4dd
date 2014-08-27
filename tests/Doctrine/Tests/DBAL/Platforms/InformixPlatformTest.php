@@ -589,4 +589,8 @@ class InformixPlatformTest extends AbstractPlatformTestCase
         );
     }
 
+    public function testQuotesAlterTableRenameIndexInSchema()
+    {
+        $this->markTestSkipped('Platform does not support schemas.');
+    }
 }
