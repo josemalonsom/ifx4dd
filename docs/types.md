@@ -10,7 +10,7 @@ Please also notice the mapping specific footnotes for additional information.
 |-------------------|---------------|------------------------------------------------------|
 | **array**         | ``array``     | *NOT MAPPED*                                         |
 | **bigint**        | ``string``    | ``BIGINT`` ``BIGSERIAL`` (1)                         |
-| **binary**        | ``resource``  | ``BYTE``                                             |
+| **binary**        | ``resource``  | *NOT MAPPED*                                         |
 | **blob**          | ``resource``  | ``BYTE``                                             |
 | **boolean**       | ``boolean``   | ``BOOLEAN``                                          |
 | **date**          | ``\DateTime`` | ``DATE``                                             |
