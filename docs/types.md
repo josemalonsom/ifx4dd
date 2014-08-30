@@ -1,6 +1,6 @@
 
-Mapping Matrix
---------------
+Mapping Matrix from Doctrine to Informix.
+-----------------------------------------
 
 The matrix contains the mapping information for how a specific Doctrine
 type is mapped to the database and back to PHP.
@@ -26,6 +26,27 @@ Please also notice the mapping specific footnotes for additional information.
 | **string** (9)    | ``string``    | ``CHAR(n)`` (5) (7) ``VARCHAR(m)`` (6) (8)           |
 | **text**          | ``string``    | ``TEXT``                                             |
 | **time**          | ``\DateTime`` | ``DATETIME HOUR TO SECOND``                          |
+
+
+Mapping Matrix from Informix to Doctrine.
+-----------------------------------------
+
+
+| Informix type (all supported versions)                              | Doctrine           |
+|---------------------------------------------------------------------|--------------------|
+| ``SMALLINT``                                                        | **smallint**       |
+| ``INTEGER`` ``SERIAL``                                              | **integer**        |
+| ``BIGINT`` ``BIGSERIAL`` ``INT8`` ``SERIAL8``                       | **bigint**         |
+| ``DECIMAL(p, s)`` ``MONEY(p, s)`` ``NUMERIC(p, s)`` (3)             | **decimal**        |
+| ``DOUBLE PRECISION`` (4) ``FLOAT`` ``SMALLFLOAT``                   | **smallfloat**     |
+| ``CHAR(n)`` ``NCHAR(n)`` (7) ``NVARCHAR(m)`` ``VARCHAR(m)`` (8)     | **string**         |
+| ``CLOB`` ``LVARCHAR(m)`` (8) ``TEXT``                               | **text**           |
+| ``BLOB`` ``BYTE``                                                   | **blob**           |
+| ``BOOLEAN``                                                         | **boolean**        |
+| ``DATE``                                                            | **date**           |
+| ``DATETIME``                                                        | **datetime**       |
+| ``DATETIME HOUR TO SECOND``                                         | **time**           |
+
 
 Please, for more information see the
 [Doctrine\DBAL documentation](http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/types.html)
