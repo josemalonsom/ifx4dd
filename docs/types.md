@@ -8,20 +8,20 @@ Please also notice the mapping specific footnotes for additional information.
 
 | Doctrine          | PHP           | Informix type (all supported versions)               |
 |-------------------|---------------|------------------------------------------------------|
-| **array**         | ``array``     | *NOT MAPPED*                                         |
+| **array**         | ``array``     | ``TEXT``                                             |
 | **bigint**        | ``string``    | ``BIGINT`` ``BIGSERIAL`` (1)                         |
-| **binary**        | ``resource``  | *NOT MAPPED*                                         |
+| **binary**        | ``resource``  | ``BYTE``                                             |
 | **blob**          | ``resource``  | ``BYTE``                                             |
 | **boolean**       | ``boolean``   | ``BOOLEAN``                                          |
 | **date**          | ``\DateTime`` | ``DATE``                                             |
 | **datetime**      | ``\DateTime`` | ``DATETIME``                                         |
-| **datetimetz**    | ``\DateTime`` | *NOT MAPPED*                                         |
+| **datetimetz**    | ``\DateTime`` | ``DATETIME YEAR TO SECOND``                          |
 | **decimal**       | ``string``    | ``NUMERIC(p, s)`` (2) (3)                            |
 | **float**         | ``float``     | ``DOUBLE PRECISION`` (4)                             |
-| **guid**          | ``string``    | *NOT MAPPED*                                         |
+| **guid**          | ``string``    | ``VARCHAR``                                          |
 | **integer**       | ``integer``   | ``INTEGER`` ``SERIAL`` (1)                           |
-| **json_array**    | ``array``     | *NOT MAPPED*                                         |
-| **object**        | ``object``    | *NOT MAPPED*                                         |
+| **json_array**    | ``array``     | ``TEXT``                                             |
+| **object**        | ``object``    | ``TEXT``                                             |
 | **smallint**      | ``integer``   | ``SMALLINT``                                         |
 | **string** (9)    | ``string``    | ``CHAR(n)`` (5) (7) ``VARCHAR(m)`` (6) (8)           |
 | **text**          | ``string``    | ``TEXT``                                             |
