@@ -6,26 +6,26 @@ The matrix contains the mapping information for how a specific Doctrine
 type is mapped to the database and back to PHP.
 Please also notice the mapping specific footnotes for additional information.
 
-| Doctrine          | PHP           | Informix type (all supported versions)               |
-|-------------------|---------------|------------------------------------------------------|
-| **array**         | ``array``     | ``TEXT``                                             |
-| **bigint**        | ``string``    | ``BIGINT`` ``BIGSERIAL`` (1)                         |
-| **binary**        | ``resource``  | ``BYTE``                                             |
-| **blob**          | ``resource``  | ``BYTE``                                             |
-| **boolean**       | ``boolean``   | ``BOOLEAN``                                          |
-| **date**          | ``\DateTime`` | ``DATE``                                             |
-| **datetime**      | ``\DateTime`` | ``DATETIME``                                         |
-| **datetimetz**    | ``\DateTime`` | ``DATETIME YEAR TO SECOND``                          |
-| **decimal**       | ``string``    | ``NUMERIC(p, s)`` (2) (3)                            |
-| **float**         | ``float``     | ``DOUBLE PRECISION`` (4)                             |
-| **guid**          | ``string``    | ``VARCHAR``                                          |
-| **integer**       | ``integer``   | ``INTEGER`` ``SERIAL`` (1)                           |
-| **json_array**    | ``array``     | ``TEXT``                                             |
-| **object**        | ``object``    | ``TEXT``                                             |
-| **smallint**      | ``integer``   | ``SMALLINT``                                         |
-| **string** (9)    | ``string``    | ``CHAR(n)`` (5) (7) ``VARCHAR(m)`` (6) (8)           |
-| **text**          | ``string``    | ``TEXT``                                             |
-| **time**          | ``\DateTime`` | ``DATETIME HOUR TO SECOND``                          |
+| Doctrine          | PHP           | Informix type (all supported versions)                         |
+|-------------------|---------------|----------------------------------------------------------------|
+| **array**         | ``array``     | ``TEXT``                                                       |
+| **bigint**        | ``string``    | ``BIGINT`` ``BIGSERIAL`` (1)                                   |
+| **binary**        | ``resource``  | ``BYTE``                                                       |
+| **blob**          | ``resource``  | ``BYTE``                                                       |
+| **boolean**       | ``boolean``   | ``BOOLEAN``                                                    |
+| **date**          | ``\DateTime`` | ``DATE``                                                       |
+| **datetime**      | ``\DateTime`` | ``DATETIME``                                                   |
+| **datetimetz**    | ``\DateTime`` | ``DATETIME YEAR TO SECOND``                                    |
+| **decimal**       | ``string``    | ``NUMERIC(p, s)`` (2) (3)                                      |
+| **float**         | ``float``     | ``DOUBLE PRECISION`` (4)                                       |
+| **guid**          | ``string``    | ``VARCHAR``                                                    |
+| **integer**       | ``integer``   | ``INTEGER`` ``SERIAL`` (1)                                     |
+| **json_array**    | ``array``     | ``TEXT``                                                       |
+| **object**        | ``object``    | ``TEXT``                                                       |
+| **smallint**      | ``integer``   | ``SMALLINT``                                                   |
+| **string** (9)    | ``string``    | ``CHAR(n)`` (5) (7) ``VARCHAR(m)`` (6) (8) `LVARCHAR(n)`` (10) |
+| **text**          | ``string``    | ``TEXT``                                                       |
+| **time**          | ``\DateTime`` | ``DATETIME HOUR TO SECOND``                                    |
 
 
 Mapping Matrix from Informix to Doctrine.
@@ -64,3 +64,4 @@ for data types.
 8. **m** is the maximum size of the column (defaults to 255 if omitted).
 9. Silently maps to the ``text`` type if the given **length** attribute for **n** or **m**
    is greater than 255.
+10. Used when the column length is greater than 255.
