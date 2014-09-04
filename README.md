@@ -134,3 +134,7 @@ added the Informix Platform classes in last place.
 DBAL uses delimited identifiers so you need to enable it in your Informix
 environment, see [enabling delimited identifiers](http://www-01.ibm.com/support/knowledgecenter/SSGU8G_12.1.0/com.ibm.sqls.doc/ids_sqs_1667.htm?lang=en).
 
+###Other documentation###
+
+- [Data type mapping](https://github.com/josemalonsom/ifx4dd/blob/fix-data-type-doc/docs/types.md)
+
