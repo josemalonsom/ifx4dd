@@ -136,5 +136,5 @@ environment, see [enabling delimited identifiers](http://www-01.ibm.com/support/
 
 ###Other documentation###
 
-- [Data type mapping](https://github.com/josemalonsom/ifx4dd/blob/fix-data-type-doc/docs/types.md)
+- [Data type mapping](docs/types.md)
 
