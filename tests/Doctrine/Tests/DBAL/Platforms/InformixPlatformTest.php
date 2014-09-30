@@ -633,4 +633,12 @@ class InformixPlatformTest extends AbstractPlatformTestCase
             $this->assertStringEndsNotWith($expected, $actual, 'WHERE clause should NOT be present');
         }
     }
+
+    public function testReturnsGuidTypeDeclarationSQL()
+    {
+        $this->assertEquals(
+            'CHAR(36)',
+            $this->_platform->getGuidTypeDeclarationSQL(array())
+        );
+    }
 }
