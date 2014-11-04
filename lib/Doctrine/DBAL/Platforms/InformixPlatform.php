@@ -947,7 +947,7 @@ class InformixPlatform extends AbstractPlatform
     {
       $tableName = (false !== $diff->newName)
           ? $diff->getNewName()->getQuotedName($this)
-          : $diff->getName()->getQuotedName($this);
+          : $diff->getName($this)->getQuotedName($this);
 
       $sql = array();
 
