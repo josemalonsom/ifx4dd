@@ -641,4 +641,29 @@ class InformixPlatformTest extends AbstractPlatformTestCase
             $this->_platform->getGuidTypeDeclarationSQL(array())
         );
     }
+
+    public function getAlterTableRenameColumnSQL()
+    {
+        return array(
+            'RENAME COLUMN foo.bar TO baz'
+        );
+    }
+
+    public function getQuotesTableIdentifiersInAlterTableSQL()
+    {
+        return array(
+            'ALTER TABLE "foo" DROP CONSTRAINT fk1',
+            'ALTER TABLE "foo" DROP CONSTRAINT fk2',
+            'RENAME COLUMN "foo".id TO war',
+            'ALTER TABLE "foo" ADD bloo INTEGER NOT NULL, DROP baz, MODIFY bar INTEGER DEFAULT NULL',
+            'RENAME TABLE "foo" TO "table"',
+            'ALTER TABLE "table" ADD CONSTRAINT FOREIGN KEY (fk3) REFERENCES fk_table (id) CONSTRAINT fk_add',
+            'ALTER TABLE "table" ADD CONSTRAINT FOREIGN KEY (fk2) REFERENCES fk_table2 (id) CONSTRAINT fk2',
+        );
+    }
+
+    public function getCommentOnColumnSQL()
+    {
+        return array('', '', '');
+    }
 }
