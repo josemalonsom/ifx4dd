@@ -73,6 +73,9 @@
 
             <!-- next covered by ./tests/Doctrine/Tests/DBAL/Functional/Driver/PDOConnectionTest.php -->
             <exclude>./vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/Driver/PDOConnectionTest.php</exclude>
+
+            <!-- next covered by ./tests/Doctrine/Tests/DBAL/Functional/ConnectionTest.php -->
+            <exclude>./vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/ConnectionTest.php</exclude>
         </testsuite>
     </testsuites>
 
