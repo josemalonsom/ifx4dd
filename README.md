@@ -8,8 +8,7 @@ abstraction layer of the [Doctrine project](http://www.doctrine-project.org).
 
 ##DBAL versions supported##
 
-This branch attempts to follow the master branch of DBAL, there is a working
-version with DBAL 2.5.0-RC2 here https://github.com/josemalonsom/ifx4dd/tree/v0.1.1 .
+This version works with DBAL 2.5.
 
 
 ##Informix versions supported##
@@ -128,6 +127,26 @@ added the Informix Platform classes in last place.
 
     $connection = DriverManager::getConnection($connectionParams);
 ```
+
+###Creating a connection with a URL###
+
+Since DBAL 2.5 it is possible to use a URL for create the connection:
+
+```php
+    <?php
+
+    require_once 'vendor/autoload.php';
+
+    use Doctrine\DBAL\DriverManager;
+
+    $connection = DriverManager::getConnection(array(
+        'url' => 'informix://user:password@hosttest1:50000/test_database?protocol=onsoctcp&server=test1tcp'
+    ));
+```
+
+Please, refer to the DBAL documentation for more information:
+https://github.com/doctrine/dbal/blob/2.5/docs/en/reference/configuration.rst
+
 
 ##Delimited identifiers##
 
