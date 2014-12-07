@@ -130,7 +130,7 @@ added the Informix Platform classes in last place.
 
 ###Creating a connection with a URL###
 
-Since DBAL 2.5 it is possible to use a URL for create the connection:
+Since DBAL 2.5 it is possible to use a URL to create the connection:
 
 ```php
     <?php
