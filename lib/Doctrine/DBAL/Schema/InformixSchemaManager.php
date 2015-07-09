@@ -221,11 +221,11 @@ class InformixSchemaManager extends AbstractSchemaManager
         foreach ( range(1, 16) as $i ) {
 
             if ( ! empty($tableForeignKey["col$i"]) ) {
-                $fkColnames[] = $tableForeignKey["col$i"];
+                $fkColnames[0] = $tableForeignKey["col$i"];
             }
 
             if ( ! empty($tableForeignKey["pkcol$i"]) ) {
-                $pkColnames[] = $tableForeignKey["pkcol$i"];
+                $pkColnames[0] = $tableForeignKey["pkcol$i"];
             }
 
         }
