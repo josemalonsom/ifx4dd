@@ -315,4 +315,32 @@ class InformixSchemaManagerTest extends SchemaManagerFunctionalTestCase
         $this->assertContains($this->_conn->getDatabase(), $databases);
     }
 
+    public function testListTableNames()
+    {
+        $this->createTestTable('list_table_names_a');
+        $this->createTestTable('list_table_names_b');
+
+        $tableNames = $this->_sm->listTableNames();
+
+        $this->assertContains('list_table_names_a', $tableNames);
+        $this->assertContains('list_table_names_b', $tableNames);
+
+        $this->_conn->getConfiguration()->setFilterSchemaAssetsExpression('/_a$/');
+
+        $tableNames = $this->_sm->listTableNames();
+
+        $this->assertContains('list_table_names_a', $tableNames);
+        $this->assertNotContains('list_table_names_b', $tableNames);
+    }
+
+    public function tearDown()
+    {
+        parent::tearDown();
+
+        if ( ! $this->_conn) {
+            return;
+        }
+
+        $this->_conn->getConfiguration()->setFilterSchemaAssetsExpression(null);
+    }
 }

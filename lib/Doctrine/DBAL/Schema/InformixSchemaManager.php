@@ -39,8 +39,9 @@ class InformixSchemaManager extends AbstractSchemaManager
         $sql .= " AND UPPER(OWNER) = UPPER('".$this->_conn->getUsername()."')";
 
         $tables = $this->_conn->fetchAll($sql);
+        $tableNames = $this->_getPortableTablesList($tables);
 
-        return $this->_getPortableTablesList($tables);
+        return $this->filterAssetNames($tableNames);
     }
 
     /**
