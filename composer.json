@@ -20,6 +20,6 @@
         "psr-0": { "Doctrine\\DBAL\\": "lib/" }
     },
     "archive": {
-        "exclude": ["!vendor", "tests", "*phpunit.xml*"]
+        "exclude": ["!vendor", "tests", "*phpunit.xml*", "build.xml"]
     }
 }
