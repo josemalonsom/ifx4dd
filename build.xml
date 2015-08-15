@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ifx4dd" default="build">
+
+    <target name="build" depends="lint, composer-install, phpunit"/>
+
+    <target name="lint" description="PHP syntax check">
+        <apply executable="php" failonerror="true" taskname="lint">
+            <arg value="-l" />
+
+            <fileset dir="${basedir}/lib">
+                <include name="**/*.php" />
+                <modified />
+            </fileset>
+
+            <fileset dir="${basedir}/tests">
+                <include name="**/*.php" />
+                <modified />
+            </fileset>
+        </apply>
+    </target>
+
+    <target name="composer-install" description="Dependencies install with composer">
+        <exec executable="composer" failonerror="true" taskname="composer-install">
+            <arg value="install" />
+            <arg value="--prefer-source" />
+            <arg value="--optimize-autoloader" />
+            <arg value="--no-progress" />
+            <arg value="--no-interaction" />
+        </exec>
+    </target>
+
+    <target name="phpunit" description="Phpunit" depends="composer-install">
+        <exec executable="${basedir}/vendor/bin/phpunit" failonerror="true" taskname="phpunit">
+            <arg value="--configuration"/>
+            <arg path="${basedir}/build.phpunit.xml"/>
+        </exec>
+    </target>
+
+</project>
