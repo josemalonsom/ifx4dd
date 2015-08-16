@@ -41,8 +41,6 @@
     <testsuites>
         <testsuite name="Informix Platform for Doctrine DBAL Test Suite">
             <directory>../tests/Doctrine/Tests/DBAL</directory>
-            <!-- TODO: this test gives a segmentation fault in some cases, no reason found yet -->
-            <exclude>../tests/Doctrine/Tests/DBAL/Functional/BlobTest.php</exclude>
         </testsuite>
         <testsuite name="Doctrine DBAL Test Suite">
             <directory>../vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL</directory>
