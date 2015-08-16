@@ -8,7 +8,7 @@
          processIsolation="false"
          stopOnFailure="true"
          syntaxCheck="false"
-         bootstrap="./tests/Doctrine/Tests/TestInit.php"
+         bootstrap="../tests/Doctrine/Tests/TestInit.php"
 >
   <php>
     <!-- DELIMIDENT is needed to use quoted identifiers -->
@@ -40,24 +40,24 @@
 
     <testsuites>
         <testsuite name="Informix Platform for Doctrine DBAL Test Suite">
-            <directory>./tests/Doctrine/Tests/DBAL</directory>
+            <directory>../tests/Doctrine/Tests/DBAL</directory>
             <!-- TODO: this test gives a segmentation fault in some cases, no reason found yet -->
-            <exclude>./tests/Doctrine/Tests/DBAL/Functional/BlobTest.php</exclude>
+            <exclude>../tests/Doctrine/Tests/DBAL/Functional/BlobTest.php</exclude>
         </testsuite>
         <testsuite name="Doctrine DBAL Test Suite">
-            <directory>./vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL</directory>
+            <directory>../vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL</directory>
 
-            <!-- next covered by ./tests/Doctrine/Tests/DBAL/Functional/BlobTest.php -->
-            <exclude>./vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/BlobTest.php</exclude>
+            <!-- next covered by ../tests/Doctrine/Tests/DBAL/Functional/BlobTest.php -->
+            <exclude>../vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/BlobTest.php</exclude>
 
-            <!-- next covered by ./tests/Doctrine/Tests/DBAL/Functional/DataAccessTest.php -->
-            <exclude>./vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/DataAccessTest.php</exclude>
+            <!-- next covered by ../tests/Doctrine/Tests/DBAL/Functional/DataAccessTest.php -->
+            <exclude>../vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/DataAccessTest.php</exclude>
 
-            <!-- next covered by ./tests/Doctrine/Tests/DBAL/Functional/Driver/PDOConnectionTest.php -->
-            <exclude>./vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/Driver/PDOConnectionTest.php</exclude>
+            <!-- next covered by ../tests/Doctrine/Tests/DBAL/Functional/Driver/PDOConnectionTest.php -->
+            <exclude>../vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/Driver/PDOConnectionTest.php</exclude>
 
-            <!-- next covered by ./tests/Doctrine/Tests/DBAL/Functional/ConnectionTest.php -->
-            <exclude>./vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/ConnectionTest.php</exclude>
+            <!-- next covered by ../tests/Doctrine/Tests/DBAL/Functional/ConnectionTest.php -->
+            <exclude>../vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/ConnectionTest.php</exclude>
         </testsuite>
     </testsuites>
 

@@ -32,7 +32,7 @@
     <target name="phpunit" description="Phpunit" depends="composer-install">
         <exec executable="${basedir}/vendor/bin/phpunit" failonerror="true" taskname="phpunit">
             <arg value="--configuration"/>
-            <arg path="${basedir}/build.phpunit.xml"/>
+            <arg path="${basedir}/build/phpunit.xml"/>
         </exec>
     </target>
 
