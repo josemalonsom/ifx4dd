@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="ifx4dd" default="build">
-
-    <target name="build" depends="lint, composer-install, phpunit"/>
+<project name="ifx4dd" default="test-all">
 
     <target name="lint" description="PHP syntax check">
         <apply executable="php" failonerror="true" taskname="lint">
@@ -29,11 +27,40 @@
         </exec>
     </target>
 
-    <target name="phpunit" description="Phpunit" depends="composer-install">
-        <exec executable="${basedir}/vendor/bin/phpunit" failonerror="true" taskname="phpunit">
-            <arg value="--configuration"/>
-            <arg path="${basedir}/build/phpunit.xml"/>
-        </exec>
+    <macrodef name="phpunit">
+
+        <attribute name="ifx-port"/>
+        <attribute name="ifx-server"/>
+
+        <sequential>
+
+            <property name="config" value="${basedir}/build/phpunit.xml" />
+            <property name="config-template" value="${basedir}/build/phpunit-template.xml" />
+
+            <copy file="${config-template}" tofile="${config}" overwrite="true">
+                <filterset>
+                    <filter token="ifx-port" value="@{ifx-port}"/>
+                    <filter token="ifx-server" value="@{ifx-server}"/>
+                </filterset>
+            </copy>
+
+            <exec executable="${basedir}/vendor/bin/phpunit" failonerror="true" taskname="phpunit">
+                <arg value="--configuration"/>
+                <arg path="${config}"/>
+            </exec>
+
+        </sequential>
+
+    </macrodef>
+
+    <target name="test-all" depends="lint, composer-install, informix-1170, informix-1210" description="Test all Informix versions" />
+
+    <target name="informix-1170" depends="lint, composer-install" description="Test Informix 11.70">
+        <phpunit ifx-port="9087" ifx-server="ifx1170" />
+    </target>
+
+    <target name="informix-1210" depends="lint, composer-install" description="Test Informix 12.10">
+        <phpunit ifx-port="9088" ifx-server="ifx1210" />
     </target>
 
 </project>
