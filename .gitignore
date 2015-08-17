@@ -2,3 +2,5 @@ vendor/
 *.swp
 cache.properties
 phpunit.xml
+/build/coverage/*
+/build/logs/*

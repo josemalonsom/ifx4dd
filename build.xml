@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="ifx4dd" default="test-all">
+<project name="ifx4dd" default="test-all" xmlns:if="ant:if" xmlns:unless="ant:unless">
 
     <target name="lint" description="PHP syntax check">
         <apply executable="php" failonerror="true" taskname="lint">
@@ -31,6 +31,8 @@
 
         <attribute name="ifx-port"/>
         <attribute name="ifx-server"/>
+        <attribute name="test-report" default="false"/>
+        <attribute name="coverage" default="false"/>
 
         <sequential>
 
@@ -47,6 +49,11 @@
             <exec executable="${basedir}/vendor/bin/phpunit" failonerror="true" taskname="phpunit">
                 <arg value="--configuration"/>
                 <arg path="${config}"/>
+                <!-- test report only if it is set -->
+                <arg value="--log-junit" if:true="@{test-report}"/>
+                <arg path="${basedir}/build/logs/junit.xml" if:true="@{test-report}"/>
+                <!-- coverage only if it is set -->
+                <arg value="--no-coverage" unless:true="@{test-report}"/>
             </exec>
 
         </sequential>
@@ -60,7 +67,7 @@
     </target>
 
     <target name="informix-1210" depends="lint, composer-install" description="Test Informix 12.10">
-        <phpunit ifx-port="9088" ifx-server="ifx1210" />
+        <phpunit ifx-port="9088" ifx-server="ifx1210" test-report="true" coverage="true" />
     </target>
 
 </project>
