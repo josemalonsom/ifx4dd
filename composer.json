@@ -14,12 +14,12 @@
     },
     "require-dev": {
         "ext-pdo_sqlite": "*",
-        "phpunit/phpunit": "3.7.*"
+        "phpunit/phpunit": "4.*"
     },
     "autoload": {
         "psr-0": { "Doctrine\\DBAL\\": "lib/" }
     },
     "archive": {
-        "exclude": ["!vendor", "tests", "*phpunit.xml*"]
+        "exclude": ["!vendor", "tests", "*phpunit.xml*", "build.xml"]
     }
 }

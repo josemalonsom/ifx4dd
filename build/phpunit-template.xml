@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="false"
+         bootstrap="../tests/Doctrine/Tests/TestInit.php"
+>
+  <php>
+    <!-- DELIMIDENT is needed to use quoted identifiers -->
+    <env name="DELIMIDENT" value="y"/>
+
+    <!-- "Real" test database -->
+    <var name="db_type" value="pdo_informix"/>
+    <var name="db_host" value="localhost" />
+    <var name="db_username" value="ifx4dd" />
+    <var name="db_password" value="ifx4dd" />
+    <var name="db_name" value="ifx4dd_test" />
+    <var name="db_port" value="@ifx-port@"/>
+    <var name="db_protocol" value="onsoctcp"/>
+    <var name="db_server" value="@ifx-server@"/>
+
+    <!-- Database for temporary connections -->
+    <var name="tmpdb_type" value="pdo_informix"/>
+    <var name="tmpdb_host" value="localhost" />
+    <var name="tmpdb_username" value="ifx4dd" />
+    <var name="tmpdb_password" value="ifx4dd" />
+    <var name="tmpdb_name" value="ifx4dd_test_tmp" />
+    <var name="tmpdb_port" value="@ifx-port@"/>
+    <var name="tmpdb_protocol" value="onsoctcp"/>
+    <var name="tmpdb_server" value="@ifx-server@"/>
+
+    <ini name="memory_limit" value="512M" />
+
+  </php>
+
+    <testsuites>
+        <testsuite name="Informix Platform for Doctrine DBAL Test Suite">
+            <directory>../tests/Doctrine/Tests/DBAL</directory>
+        </testsuite>
+        <testsuite name="Doctrine DBAL Test Suite">
+            <directory>../vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL</directory>
+
+            <!-- next covered by ../tests/Doctrine/Tests/DBAL/Functional/BlobTest.php -->
+            <exclude>../vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/BlobTest.php</exclude>
+
+            <!-- next covered by ../tests/Doctrine/Tests/DBAL/Functional/DataAccessTest.php -->
+            <exclude>../vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/DataAccessTest.php</exclude>
+
+            <!-- next covered by ../tests/Doctrine/Tests/DBAL/Functional/Driver/PDOConnectionTest.php -->
+            <exclude>../vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/Driver/PDOConnectionTest.php</exclude>
+
+            <!-- next covered by ../tests/Doctrine/Tests/DBAL/Functional/ConnectionTest.php -->
+            <exclude>../vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/ConnectionTest.php</exclude>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">../lib</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="coverage"/>
+        <log type="coverage-clover" target="logs/clover.xml"/>
+    </logging>
+
+</phpunit>

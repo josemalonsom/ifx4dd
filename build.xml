@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ifx4dd" default="test-all" xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+    <target name="lint" description="PHP syntax check">
+        <apply executable="php" failonerror="true" taskname="lint">
+            <arg value="-l" />
+
+            <fileset dir="${basedir}/lib">
+                <include name="**/*.php" />
+                <modified />
+            </fileset>
+
+            <fileset dir="${basedir}/tests">
+                <include name="**/*.php" />
+                <modified />
+            </fileset>
+        </apply>
+    </target>
+
+    <target name="composer-install" description="Dependencies install with composer">
+        <exec executable="composer" failonerror="true" taskname="composer-install">
+            <arg value="install" />
+            <arg value="--prefer-source" />
+            <arg value="--optimize-autoloader" />
+            <arg value="--no-progress" />
+            <arg value="--no-interaction" />
+        </exec>
+    </target>
+
+    <macrodef name="phpunit">
+
+        <attribute name="ifx-port"/>
+        <attribute name="ifx-server"/>
+        <attribute name="test-report" default="false"/>
+        <attribute name="coverage" default="false"/>
+
+        <sequential>
+
+            <property name="config" value="${basedir}/build/phpunit.xml" />
+            <property name="config-template" value="${basedir}/build/phpunit-template.xml" />
+
+            <copy file="${config-template}" tofile="${config}" overwrite="true">
+                <filterset>
+                    <filter token="ifx-port" value="@{ifx-port}"/>
+                    <filter token="ifx-server" value="@{ifx-server}"/>
+                </filterset>
+            </copy>
+
+            <exec executable="${basedir}/vendor/bin/phpunit" failonerror="true" taskname="phpunit">
+                <arg value="--configuration"/>
+                <arg path="${config}"/>
+                <!-- test report only if it is set -->
+                <arg value="--log-junit" if:true="@{test-report}"/>
+                <arg path="${basedir}/build/logs/junit.xml" if:true="@{test-report}"/>
+                <!-- coverage only if it is set -->
+                <arg value="--no-coverage" unless:true="@{test-report}"/>
+            </exec>
+
+        </sequential>
+
+    </macrodef>
+
+    <target name="test-all" depends="lint, composer-install, informix-1170, informix-1210" description="Test all Informix versions" />
+
+    <target name="informix-1170" depends="lint, composer-install" description="Test Informix 11.70">
+        <phpunit ifx-port="9087" ifx-server="ifx1170" />
+    </target>
+
+    <target name="informix-1210" depends="lint, composer-install" description="Test Informix 12.10">
+        <phpunit ifx-port="9088" ifx-server="ifx1210" test-report="true" coverage="true" />
+    </target>
+
+</project>
