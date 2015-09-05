@@ -23,6 +23,7 @@ use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Schema\Constraint;
 use Doctrine\DBAL\Schema\ForeignKeyConstraint;
+use Doctrine\DBAL\Schema\Identifier;
 use Doctrine\DBAL\Schema\Index;
 use Doctrine\DBAL\Schema\Sequence;
 use Doctrine\DBAL\Schema\Table;
@@ -533,7 +534,8 @@ class InformixPlatform extends AbstractPlatform
         /*
          * We list first the indexes created by the user excluding the
          * internal indexes created automaticly by Informix, then we
-         * list the constraints that have indexes.
+         * list the constraints that have indexes excluding implicit
+         * indexes created for referential constraints.
          */
         return 'SELECT st.tabname, si.idxname, si.idxtype, '
             . 'NULL::VARCHAR(128) constrname, NULL::CHAR(1) constrtype, '
@@ -627,7 +629,8 @@ class InformixPlatform extends AbstractPlatform
             . 'LEFT OUTER JOIN syscolumns sc16 '
             . '    ON (ABS(si.part16)= sc16.colno AND si.tabid = sc16.tabid) '
             . 'WHERE UPPER(st.tabname) = UPPER(\'' . $table . '\') '
-            . 'AND ctr.idxname IS NOT NULL ';
+            . 'AND ctr.idxname IS NOT NULL '
+            . 'AND ctr.constrtype <> \'R\' ';
     }
 
     /**
@@ -978,6 +981,16 @@ class InformixPlatform extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
+    protected function getRenameIndexSQL($oldIndexName, Index $index, $tableName)
+    {
+        return array(
+            'RENAME INDEX ' . $oldIndexName . ' TO ' . $index->getQuotedName($this)
+        );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getCreateTemporaryTableSnippetSQL()
     {
         return 'CREATE ' . $this->getTemporaryTableSQL() . ' TABLE';
@@ -1096,13 +1109,14 @@ class InformixPlatform extends AbstractPlatform
     public function getUniqueConstraintDeclarationSQL($name, Index $index)
     {
         $columns = $index->getQuotedColumns($this);
+        $name    = new Identifier($name);
 
         if ( count($columns) === 0 ) {
             throw new \InvalidArgumentException("Incomplete definition. 'columns' required.");
         }
 
-        return ' UNIQUE (' . $this->getIndexFieldDeclarationListSQL($columns)
-            . ') CONSTRAINT ' . $name;
+        return 'UNIQUE (' . $this->getIndexFieldDeclarationListSQL($columns)
+            . ') CONSTRAINT ' . $name->getQuotedName($this);
     }
 
     /**
