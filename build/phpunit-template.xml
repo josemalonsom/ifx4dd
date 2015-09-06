@@ -63,6 +63,10 @@
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">../lib</directory>
         </whitelist>
+        <exclude>
+            <file>../lib/Doctrine/DBAL/DriverManager.php</file>
+            <file>../lib/Doctrine/DBAL/Portability/Connection.php</file>
+        </exclude>
     </filter>
 
     <logging>
