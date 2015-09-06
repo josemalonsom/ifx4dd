@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Use this configuration file as a template to run the tests against any dbms.
-    Procedure:
-        1) Save a copy of this file with a name of your chosing. It doesn't matter
-           where you place it as long as you know where it is.
-           i.e. "mysqlconf.xml" (It needs the ending .xml).
-        2) Edit the file and fill in your settings (database name, type, username, etc.)
-           Just change the "value"s, not the names of the var elements.
-        3) To run the tests against the database type the following from within the
-           tests/ folder: phpunit -c <filename> ...
-           Example: phpunit -c mysqlconf.xml
+
+    This is a example file to run the tests against a Informix database.
+
+    To run the tests copy the file as phpunit.xml (the default configuration
+    file name used by phpunit), fill the connection values, ensure that both
+    databases, the "real" test database and the temporary database, exist
+    before launching the tests and run phpunit.
+
+    Considerations:
+
+    - To run the tests the DBAL tests need to be with the Doctrine\DBAL vendor
+    libs (it should be installed with composer).
+
+    - Some tests of Doctrine\DBAL from the vendor directory are excluded because
+    they don't work as such and need some little modifications, they are supplied
+    with the Informix Platform code in order to run it.
+
+    - You must set your Informix environment to use delimited identifiers, in
+    *nix systems it is enough set the DELIMIDENT variable (see below).
+
 -->
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
@@ -23,29 +33,66 @@
          bootstrap="./tests/Doctrine/Tests/TestInit.php"
 >
   <php>
+    <!-- DELIMIDENT is needed to use quoted identifiers -->
+    <env name="DELIMIDENT" value="y"/>
+
     <!-- "Real" test database -->
-    <!-- Uncomment, otherwise SQLite runs
-    <var name="db_type" value="pdo_mysql"/>
-    <var name="db_host" value="localhost" />
-    <var name="db_username" value="root" />
+    <var name="db_type" value="pdo_informix"/>
+    <var name="db_host" value="" />
+    <var name="db_username" value="" />
     <var name="db_password" value="" />
-    <var name="db_name" value="doctrine_tests" />
-    <var name="db_port" value="3306"/>
-    -->
-    <!--<var name="db_event_subscribers" value="Doctrine\DBAL\Event\Listeners\OracleSessionInit">-->
-    
-    <!-- Database for temporary connections (i.e. to drop/create the main database) -->
-    <var name="tmpdb_type" value="pdo_mysql"/>
-    <var name="tmpdb_host" value="localhost" />
-    <var name="tmpdb_username" value="root" />
+    <var name="db_name" value="ifx4dd" />
+    <var name="db_port" value=""/>
+    <var name="db_protocol" value="onsoctcp"/>
+    <var name="db_server" value=""/>
+
+    <!-- Database for temporary connections -->
+    <var name="tmpdb_type" value="pdo_informix"/>
+    <var name="tmpdb_host" value="" />
+    <var name="tmpdb_username" value="" />
     <var name="tmpdb_password" value="" />
-    <var name="tmpdb_name" value="doctrine_tests_tmp" />
-    <var name="tmpdb_port" value="3306"/>
+    <var name="tmpdb_name" value="ifx4dd_tmp" />
+    <var name="tmpdb_port" value=""/>
+    <var name="tmpdb_protocol" value="onsoctcp"/>
+    <var name="tmpdb_server" value=""/>
+
   </php>
 
     <testsuites>
-        <testsuite name="Doctrine DBAL Test Suite">
+        <testsuite name="Informix Platform for Doctrine DBAL Test Suite">
             <directory>./tests/Doctrine/Tests/DBAL</directory>
         </testsuite>
+        <testsuite name="Doctrine DBAL Test Suite">
+            <directory>./vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL</directory>
+
+            <!-- next covered by ./tests/Doctrine/Tests/DBAL/Functional/BlobTest.php -->
+            <exclude>./vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/BlobTest.php</exclude>
+
+            <!-- next covered by ./tests/Doctrine/Tests/DBAL/Functional/DataAccessTest.php -->
+            <exclude>./vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/DataAccessTest.php</exclude>
+
+            <!-- next covered by ./tests/Doctrine/Tests/DBAL/Functional/Driver/PDOConnectionTest.php -->
+            <exclude>./vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/Driver/PDOConnectionTest.php</exclude>
+
+            <!-- next covered by ./tests/Doctrine/Tests/DBAL/Functional/ConnectionTest.php -->
+            <exclude>./vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/ConnectionTest.php</exclude>
+        </testsuite>
     </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./lib</directory>
+            <exclude>
+                <file>./lib/Doctrine/DBAL/DriverManager.php</file>
+                <file>./lib/Doctrine/DBAL/Portability/Connection.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <!--
+    <logging>
+        <log type="coverage-html" target="build/coverage"/>
+    </logging>
+    -->
+
 </phpunit>
