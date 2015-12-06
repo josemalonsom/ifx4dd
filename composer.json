@@ -7,7 +7,6 @@
     "authors": [
         {"name": "Jose M. Alonso M.", "email": "josemalonsom@yahoo.es", "role": "monkey hitting keys"}
     ],
-    "minimum-stability": "dev",
     "require": {
         "ext-pdo_informix": ">=1.3.1",
         "doctrine/dbal": "2.5.2"
