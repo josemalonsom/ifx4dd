@@ -9,6 +9,11 @@ class ConnectionTest extends DbalFunctionalTestCase
     public function setUp()
     {
         parent::setUp();
+
+        if ($this->_conn->getDatabasePlatform()->getName() != 'informix') {
+            $this->markTestSkipped('This test only applies to PDO_INFORMIX');
+        }
+
         $this->connection = $this->_conn->getWrappedConnection();
     }
 
