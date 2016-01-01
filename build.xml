@@ -37,6 +37,14 @@
         </antcall>
     </target>
 
+    <target name="test-with-report-generation" depends="lint, composer-install" description="Test with report generation">
+        <antcall target="runtests">
+            <param name="ifx-port" value="9088" />
+            <param name="ifx-server" value="ifx1210" />
+            <param name="test-report" value="true" />
+        </antcall>
+    </target>
+
     <target name="lint" description="PHP syntax check">
         <apply executable="php" failonerror="true" taskname="lint">
             <arg value="-l" />
