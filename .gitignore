@@ -2,5 +2,7 @@ vendor/
 *.swp
 cache.properties
 phpunit.xml
+phpunit.*.xml
 /build/coverage/*
 /build/logs/*
+.php-version
