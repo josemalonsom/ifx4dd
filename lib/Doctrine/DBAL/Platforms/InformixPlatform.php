@@ -65,7 +65,7 @@ class InformixPlatform extends AbstractPlatform
             'bigserial'         => 'bigint',
             'blob'              => 'blob',
             'boolean'           => 'boolean',
-            'byte'              => 'blob',
+            'byte'              => 'binary',
             'char'              => 'string',
             'clob'              => 'text',
             'date'              => 'date',

@@ -41,7 +41,8 @@ Mapping Matrix from Informix to Doctrine.
 | ``DOUBLE PRECISION`` (4) ``FLOAT`` ``SMALLFLOAT``                   | **smallfloat**     |
 | ``CHAR(n)`` ``NCHAR(n)`` (7) ``NVARCHAR(m)`` ``VARCHAR(m)`` (8)     | **string**         |
 | ``CLOB`` ``LVARCHAR(m)`` (8) ``TEXT``                               | **text**           |
-| ``BLOB`` ``BYTE``                                                   | **blob**           |
+| ``BLOB``                                                            | **blob**           |
+| ``BYTE``                                                            | **binary**         |
 | ``BOOLEAN``                                                         | **boolean**        |
 | ``DATE``                                                            | **date**           |
 | ``DATETIME``                                                        | **datetime**       |

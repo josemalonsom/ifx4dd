@@ -94,7 +94,7 @@ class InformixSchemaManagerTest extends SchemaManagerFunctionalTestCase
       );
 
       $data[][] = array(
-          'doctrine_type' => 'blob',
+          'doctrine_type' => 'binary',
           'sql_snippet'   => 'BYTE',
           'test_name'     => 'byte',
       );
@@ -249,10 +249,10 @@ class InformixSchemaManagerTest extends SchemaManagerFunctionalTestCase
 
         $table = $this->_sm->listTableDetails($tableName);
 
-        $this->assertInstanceOf('Doctrine\DBAL\Types\BlobType', $table->getColumn('column_varbinary')->getType());
+        $this->assertInstanceOf('Doctrine\DBAL\Types\BinaryType', $table->getColumn('column_varbinary')->getType());
         $this->assertFalse($table->getColumn('column_varbinary')->getFixed());
 
-        $this->assertInstanceOf('Doctrine\DBAL\Types\BlobType', $table->getColumn('column_binary')->getType());
+        $this->assertInstanceOf('Doctrine\DBAL\Types\BinaryType', $table->getColumn('column_binary')->getType());
         $this->assertFalse($table->getColumn('column_binary')->getFixed());
     }
 
