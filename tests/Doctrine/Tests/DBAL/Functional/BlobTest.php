@@ -61,6 +61,10 @@ class BlobTest extends \Doctrine\Tests\DbalFunctionalTestCase
 
     public function testUpdate()
     {
+        if ($this->_conn->getDriver() instanceof \Doctrine\DBAL\Driver\PDOInformix\Driver) {
+            $this->markTestSkipped('This test does not work on pdo_informix, see: https://bugs.php.net/bug.php?id=71330');
+        }
+
         $ret = $this->_conn->insert('blob_table',
             array('id' => 1, 'clobfield' => 'test', 'blobfield' => 'test', 'binaryfield' => 'test'),
             array(\PDO::PARAM_INT, \PDO::PARAM_STR, \PDO::PARAM_LOB, \PDO::PARAM_LOB)

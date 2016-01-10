@@ -52,11 +52,7 @@ class InformixPlatform extends AbstractPlatform
      */
     public function getBlobTypeDeclarationSQL(array $field)
     {
-       /*
-        The use of BLOB type in Informix is tricky and doesn't work properly
-        with the pdo_informix extension so the BYTE type is used instead.
-       */
-        return 'BYTE';
+        return 'BLOB';
     }
 
     /**

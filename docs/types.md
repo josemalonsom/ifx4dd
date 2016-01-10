@@ -11,7 +11,7 @@ Please also notice the mapping specific footnotes for additional information.
 | **array**         | ``array``     | ``TEXT``                                                       |
 | **bigint**        | ``string``    | ``BIGINT`` ``BIGSERIAL`` (1)                                   |
 | **binary**        | ``resource``  | ``BYTE``                                                       |
-| **blob**          | ``resource``  | ``BYTE``                                                       |
+| **blob**          | ``resource``  | ``BLOB``                                                       |
 | **boolean**       | ``boolean``   | ``BOOLEAN``                                                    |
 | **date**          | ``\DateTime`` | ``DATE``                                                       |
 | **datetime**      | ``\DateTime`` | ``DATETIME``                                                   |
