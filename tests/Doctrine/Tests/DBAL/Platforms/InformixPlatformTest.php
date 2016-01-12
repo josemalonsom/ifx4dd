@@ -724,4 +724,9 @@ class InformixPlatformTest extends AbstractPlatformTestCase
     {
         return false;
     }
+
+    protected function getQuotesReservedKeywordInTruncateTableSQL()
+    {
+        return 'TRUNCATE "select"';
+    }
 }
