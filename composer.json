@@ -13,7 +13,8 @@
     },
     "require-dev": {
         "ext-pdo_sqlite": "*",
-        "phpunit/phpunit": "4.*"
+        "phpunit/phpunit": "4.*",
+        "symfony/console": "2.*"
     },
     "autoload": {
         "psr-0": { "Doctrine\\DBAL\\": "lib/" }
