@@ -9,8 +9,8 @@ abstraction layer of the [Doctrine project](http://www.doctrine-project.org).
 
 |  DBAL   | ifx4dd  |     |
 |:-------:|:-------:|:---:|
-|  master |  master | [![Build Status](http://vps195060.ovh.net:8080/job/ifx4dd/badge/icon)](http://vps195060.ovh.net:8080/job/ifx4dd) |
-|  2.5    |  1.0    | [![Build Status](http://vps195060.ovh.net:8080/job/ifx4dd-1.0/badge/icon)](http://vps195060.ovh.net:8080/job/ifx4dd-1.0) |
+|  [master](https://github.com/doctrine/dbal) |  [master](https://github.com/josemalonsom/ifx4dd) | [![Build Status](http://vps195060.ovh.net:8080/job/ifx4dd/badge/icon)](http://vps195060.ovh.net:8080/job/ifx4dd) |
+|  [2.5](https://github.com/doctrine/dbal/tree/2.5)    |  [1.0](https://github.com/josemalonsom/ifx4dd/tree/1.0) | [![Build Status](http://vps195060.ovh.net:8080/job/ifx4dd-1.0/badge/icon)](http://vps195060.ovh.net:8080/job/ifx4dd-1.0) |
 
 
 ##Informix versions supported##
