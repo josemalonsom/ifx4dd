@@ -6,3 +6,4 @@ phpunit.*.xml
 /build/coverage/*
 /build/logs/*
 .php-version
+/composer.lock
