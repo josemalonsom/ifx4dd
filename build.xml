@@ -21,23 +21,23 @@
     <property name="phpunit-config" value="${basedir}/build/phpunit.xml" />
     <property name="phpunit-config-template" value="${basedir}/build/phpunit-template.xml" />
 
-    <target name="test-all" depends="lint, run-composer, informix-1170, informix-1210" description="Test all Informix versions" />
+    <target name="test-all" depends="informix-1170, informix-1210" description="Test all Informix versions" />
 
-    <target name="informix-1170" depends="lint, run-composer" description="Test Informix 11.70">
+    <target name="informix-1170" description="Test Informix 11.70">
         <antcall target="runtests">
             <param name="ifx-port" value="9087" />
             <param name="ifx-server" value="ifx1170" />
         </antcall>
     </target>
 
-    <target name="informix-1210" depends="lint, run-composer" description="Test Informix 12.10">
+    <target name="informix-1210" description="Test Informix 12.10">
         <antcall target="runtests">
             <param name="ifx-port" value="9088" />
             <param name="ifx-server" value="ifx1210" />
         </antcall>
     </target>
 
-    <target name="test-with-report-generation" depends="lint, run-composer" description="Test with report generation">
+    <target name="test-with-report-generation" description="Test with report generation">
         <antcall target="runtests">
             <param name="ifx-port" value="9088" />
             <param name="ifx-server" value="ifx1210" />
@@ -71,7 +71,15 @@
         </exec>
     </target>
 
-    <target name="runtests">
+    <target name="show-dbal-version">
+        <exec executable="composer" failonerror="true" taskname="show-dbal-version">
+            <arg value="show" />
+            <arg value="-i" />
+            <arg value="doctrine/dbal" />
+        </exec>
+    </target>
+
+    <target name="runtests" depends="lint">
 
         <condition property="php-versions" value="none">
             <not>
@@ -94,6 +102,8 @@
         </condition>
 
         <antcall target="set-php-version" />
+        <antcall target="run-composer" />
+        <antcall target="show-dbal-version" />
 
         <exec executable="${basedir}/vendor/bin/phpunit" failonerror="true" taskname="phpunit">
             <arg value="--configuration"/>
