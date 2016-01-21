@@ -21,23 +21,23 @@
     <property name="phpunit-config" value="${basedir}/build/phpunit.xml" />
     <property name="phpunit-config-template" value="${basedir}/build/phpunit-template.xml" />
 
-    <target name="test-all" depends="lint, composer-install, informix-1170, informix-1210" description="Test all Informix versions" />
+    <target name="test-all" depends="lint, run-composer, informix-1170, informix-1210" description="Test all Informix versions" />
 
-    <target name="informix-1170" depends="lint, composer-install" description="Test Informix 11.70">
+    <target name="informix-1170" depends="lint, run-composer" description="Test Informix 11.70">
         <antcall target="runtests">
             <param name="ifx-port" value="9087" />
             <param name="ifx-server" value="ifx1170" />
         </antcall>
     </target>
 
-    <target name="informix-1210" depends="lint, composer-install" description="Test Informix 12.10">
+    <target name="informix-1210" depends="lint, run-composer" description="Test Informix 12.10">
         <antcall target="runtests">
             <param name="ifx-port" value="9088" />
             <param name="ifx-server" value="ifx1210" />
         </antcall>
     </target>
 
-    <target name="test-with-report-generation" depends="lint, composer-install" description="Test with report generation">
+    <target name="test-with-report-generation" depends="lint, run-composer" description="Test with report generation">
         <antcall target="runtests">
             <param name="ifx-port" value="9088" />
             <param name="ifx-server" value="ifx1210" />
@@ -61,9 +61,9 @@
         </apply>
     </target>
 
-    <target name="composer-install" description="Dependencies install with composer">
-        <exec executable="composer" failonerror="true" taskname="composer-install">
-            <arg value="install" />
+    <target name="run-composer" description="Dependency resolution with composer">
+        <exec executable="composer" failonerror="true" taskname="run-composer">
+            <arg value="update" />
             <arg value="--prefer-source" />
             <arg value="--optimize-autoloader" />
             <arg value="--no-progress" />
