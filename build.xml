@@ -74,7 +74,6 @@
     <target name="show-dbal-version">
         <exec executable="composer" failonerror="true" taskname="show-dbal-version">
             <arg value="show" />
-            <arg value="-i" />
             <arg value="doctrine/dbal" />
         </exec>
     </target>
