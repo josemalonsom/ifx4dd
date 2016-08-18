@@ -78,7 +78,7 @@
         </exec>
     </target>
 
-    <target name="runtests" depends="lint">
+    <target name="runtests">
 
         <condition property="php-versions" value="none">
             <not>
@@ -101,6 +101,7 @@
         </condition>
 
         <antcall target="set-php-version" />
+        <antcall target="lint" />
         <antcall target="run-composer" />
         <antcall target="show-dbal-version" />
 
