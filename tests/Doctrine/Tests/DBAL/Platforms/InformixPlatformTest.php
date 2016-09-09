@@ -729,4 +729,9 @@ class InformixPlatformTest extends AbstractPlatformTestCase
     {
         return 'TRUNCATE "select"';
     }
+
+    protected function getQuotesDropForeignKeySQL()
+    {
+        return 'ALTER TABLE "table" DROP CONSTRAINT "select"';
+    }
 }
