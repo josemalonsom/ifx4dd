@@ -35,6 +35,13 @@ class PDOConnectionTest extends DbalFunctionalTestCase
         }
     }
 
+    protected function tearDown()
+    {
+        $this->resetSharedConn();
+
+        parent::tearDown();
+    }
+
     public function testDoesNotRequireQueryForServerVersion()
     {
         if ( $this->platform->getName() == 'informix' ) {
