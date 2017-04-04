@@ -5,7 +5,7 @@ The *Informix Platform for Doctrine DBAL*  gives support for Informix to
 [Doctrine\DBAL](http://www.doctrine-project.org/projects/dbal.html) the database
 abstraction layer of the [Doctrine project](http://www.doctrine-project.org).
 
-[![Build Status](http://vps195060.ovh.net:8080/job/ifx4dd-1.0/badge/icon)](http://vps195060.ovh.net:8080/job/ifx4dd-1.0)
+[![Build Status](http://vps195060.ovh.net/job/ifx4dd-1.0/badge/icon)](http://vps195060.ovh.net/job/ifx4dd-1.0)
 
 ##DBAL versions supported##
 
