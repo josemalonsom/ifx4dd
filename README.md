@@ -1,11 +1,11 @@
 
-#Informix Platform for Doctrine DBAL#
+# Informix Platform for Doctrine DBAL
 
 The *Informix Platform for Doctrine DBAL*  gives support for Informix to
 [Doctrine\DBAL](http://www.doctrine-project.org/projects/dbal.html) the database
 abstraction layer of the [Doctrine project](http://www.doctrine-project.org).
 
-##DBAL versions supported##
+## DBAL versions supported
 
 |  DBAL   | ifx4dd  |     |
 |:-------:|:-------:|:---:|
@@ -13,13 +13,13 @@ abstraction layer of the [Doctrine project](http://www.doctrine-project.org).
 |  [2.5](https://github.com/doctrine/dbal/tree/2.5)    |  [1.0](https://github.com/josemalonsom/ifx4dd/tree/1.0) | [![Build Status](http://vps195060.ovh.net/job/ifx4dd-1.0/badge/icon)](http://vps195060.ovh.net/job/ifx4dd-1.0) |
 
 
-##Informix versions supported##
+## Informix versions supported
 
 Tested on Informix Dynamic Server versions 11.70 and 12.10 (right now it's not
 tested on 11.50 but should work anyway).
 
 
-##INSTALL##
+## INSTALL
 
 If you don't already have the PDO\_INFORMIX extension for PHP you need install it
 (see [PDO\_INFORMIX](http://www.php.net/manual/en/ref.pdo-informix.php)), make
@@ -49,7 +49,7 @@ connection test to your Informix server using the next example
 You also will need [composer](https://getcomposer.org) in order to install all
 the dependencies, if you don't have it install it first.
 
-###Install from the repository###
+### Install from the repository
 
 Download the code of the *Informix Platform for Doctrine DBAL* or clone it with
 git ```git clone https://github.com/josemalonsom/Ifx4dd.git```. Move to the
@@ -65,7 +65,7 @@ autoloader class that you can find in the vendor/autoload.php file. The
 autoloader will add the Informix Platform directories in first place so that
 you can use the Informix Platform specific versions of some of the DBAL classes.
 
-###Install with composer###
+### Install with composer
 
 Simply execute:
 
@@ -75,7 +75,7 @@ Simply execute:
 
 it will install the libraries under the `vendor` directory.
 
-##Getting a connection with Informix##
+## Getting a connection with Informix
 
 If you don't have experience with DBAL please read first its documentation
 [Doctrine\DBAL documentation](http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest)
@@ -85,7 +85,7 @@ Doctrine\DBAL with comes with the Informix Platform or you can use the original
 DriverManager class of Doctrine\DBAL, in this last case you will need to specify
 the driver class to use.
 
-###Creating a connection with the modified version of the DriverManager###
+### Creating a connection with the modified version of the DriverManager
 
 Ifx4dd comes with a modified version of the DriverManager class that adds
 `pdo_informix` as one of the possible drivers to use.
@@ -125,7 +125,7 @@ in first place to the autoloader).
     $connection = DriverManager::getConnection($connectionParams);
 ```
 
-###Creating a connection with the original DriverManager of DBAL###
+### Creating a connection with the original DriverManager of DBAL
 
 If you want to use the 'Doctrine\DBAL\DriverManager' class what comes with DBAL
 you need to specify the driver class to use in the connection params as in the
@@ -153,7 +153,7 @@ next example:
     $connection = DriverManager::getConnection($connectionParams);
 ```
 
-###Creating a connection with a URL###
+### Creating a connection with a URL
 
 Since DBAL 2.5 it is possible to use a URL to create the connection (note that
 in this case you must use the ifx4dd DriverManager version).
@@ -179,12 +179,12 @@ in this case you must use the ifx4dd DriverManager version).
 Please, refer to the DBAL documentation for more information:
 https://github.com/doctrine/dbal/blob/2.5/docs/en/reference/configuration.rst
 
-##Delimited identifiers##
+## Delimited identifiers
 
 DBAL uses delimited identifiers so you need to enable it in your Informix
 environment, see [enabling delimited identifiers](http://www-01.ibm.com/support/knowledgecenter/SSGU8G_12.1.0/com.ibm.sqls.doc/ids_sqs_1667.htm?lang=en).
 
-###Other documentation###
+### Other documentation
 
 - [Data type mapping](docs/types.md)
 
