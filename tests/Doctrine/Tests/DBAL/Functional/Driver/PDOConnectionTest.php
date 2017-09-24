@@ -48,7 +48,7 @@ class PDOConnectionTest extends DbalFunctionalTestCase
             $this->markTestSkipped('This test does not apply to PDO_INFORMIX');
         }
 
-        $this->assertFalse($this->driverConnection->requiresQueryForServerVersion());
+        self::assertFalse($this->driverConnection->requiresQueryForServerVersion());
     }
 
     /**
@@ -103,7 +103,7 @@ class PDOConnectionTest extends DbalFunctionalTestCase
             $this->markTestSkipped('This test only applies to PDO_INFORMIX');
         }
 
-        $this->assertTrue($this->driverConnection->requiresQueryForServerVersion());
+        self::assertTrue($this->driverConnection->requiresQueryForServerVersion());
     }
 
     /**

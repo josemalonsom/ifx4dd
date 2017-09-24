@@ -37,19 +37,19 @@ class BlobTest extends \Doctrine\Tests\DbalFunctionalTestCase
 
     public function testInsert()
     {
-        $this->_conn->insert('blob_table',
+        $ret = $this->_conn->insert('blob_table',
             array('id' => 1, 'clobfield' => 'test', 'blobfield' => 'test', 'binaryfield' => 'test'),
             array(\PDO::PARAM_INT, \PDO::PARAM_STR, \PDO::PARAM_LOB, \PDO::PARAM_LOB)
         );
 
         $ret = $this->_conn->query('SELECT COUNT(*) FROM blob_table WHERE id = 1')->fetchColumn(0);
 
-        $this->assertEquals(1, $ret);
+        self::assertEquals(1, $ret);
     }
 
     public function testSelect()
     {
-        $ret = $this->_conn->insert('blob_table',
+        $this->_conn->insert('blob_table',
             array('id' => 1, 'clobfield' => 'test', 'blobfield' => 'test', 'binaryfield' => 'test'),
             array(\PDO::PARAM_INT, \PDO::PARAM_STR, \PDO::PARAM_LOB, \PDO::PARAM_LOB)
         );
@@ -63,7 +63,7 @@ class BlobTest extends \Doctrine\Tests\DbalFunctionalTestCase
             $this->markTestSkipped('This test does not work on pdo_informix, see: https://bugs.php.net/bug.php?id=71330');
         }
 
-        $ret = $this->_conn->insert('blob_table',
+        $this->_conn->insert('blob_table',
             array('id' => 1, 'clobfield' => 'test', 'blobfield' => 'test', 'binaryfield' => 'test'),
             array(\PDO::PARAM_INT, \PDO::PARAM_STR, \PDO::PARAM_LOB, \PDO::PARAM_LOB)
         );
@@ -82,25 +82,25 @@ class BlobTest extends \Doctrine\Tests\DbalFunctionalTestCase
     {
         $rows = $this->_conn->fetchAll('SELECT * FROM blob_table');
 
-        $this->assertEquals(1, count($rows));
+        self::assertEquals(1, count($rows));
         $row = array_change_key_case($rows[0], CASE_LOWER);
 
         $blobValue = Type::getType('binary')->convertToPHPValue($row['binaryfield'], $this->_conn->getDatabasePlatform());
 
-        $this->assertInternalType('resource', $blobValue);
-        $this->assertEquals($text, stream_get_contents($blobValue));
+        self::assertInternalType('resource', $blobValue);
+        self::assertEquals($text, stream_get_contents($blobValue));
     }
 
     private function assertBlobContains($text)
     {
         $rows = $this->_conn->fetchAll('SELECT * FROM blob_table');
 
-        $this->assertEquals(1, count($rows));
+        self::assertEquals(1, count($rows));
         $row = array_change_key_case($rows[0], CASE_LOWER);
 
         $blobValue = Type::getType('blob')->convertToPHPValue($row['blobfield'], $this->_conn->getDatabasePlatform());
 
-        $this->assertInternalType('resource', $blobValue);
-        $this->assertEquals($text, stream_get_contents($blobValue));
+        self::assertInternalType('resource', $blobValue);
+        self::assertEquals($text, stream_get_contents($blobValue));
     }
 }
