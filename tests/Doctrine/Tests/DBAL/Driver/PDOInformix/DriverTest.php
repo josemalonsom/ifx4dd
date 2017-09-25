@@ -2,6 +2,7 @@
 
 namespace Doctrine\Tests\DBAL\Driver\PDOInformix;
 
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Driver\PDOInformix\Driver;
 use Doctrine\Tests\DBAL\Driver\AbstractInformixDriverTest;
 
@@ -24,9 +25,8 @@ class DriverTest extends AbstractInformixDriverTest
         array $params, $exceptionMessage
     ) {
 
-        $this->setExpectedException(
-            'Doctrine\DBAL\DBALException', $exceptionMessage
-        );
+        $this->expectException(DBALException::class);
+        $this->expectExceptionMessage($exceptionMessage);
 
         $this->driver->connect($params);
     }
