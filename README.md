@@ -10,6 +10,7 @@ abstraction layer of the [Doctrine project](http://www.doctrine-project.org).
 |  DBAL   | ifx4dd  |     |
 |:-------:|:-------:|:---:|
 |  [master](https://github.com/doctrine/dbal) |  [master](https://github.com/josemalonsom/ifx4dd) | [![Build Status](http://vps195060.ovh.net/job/ifx4dd/badge/icon)](http://vps195060.ovh.net/job/ifx4dd) |
+|  [2.6](https://github.com/doctrine/dbal/tree/2.6)    |  [1.1](https://github.com/josemalonsom/ifx4dd/tree/1.1) | [![Build Status](http://vps195060.ovh.net/job/ifx4dd-1.1/badge/icon)](http://vps195060.ovh.net/job/ifx4dd-1.1) |
 |  [2.5](https://github.com/doctrine/dbal/tree/2.5)    |  [1.0](https://github.com/josemalonsom/ifx4dd/tree/1.0) | [![Build Status](http://vps195060.ovh.net/job/ifx4dd-1.0/badge/icon)](http://vps195060.ovh.net/job/ifx4dd-1.0) |
 
 
