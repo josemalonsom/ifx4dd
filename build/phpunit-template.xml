@@ -16,9 +16,9 @@
 
     <!-- "Real" test database -->
     <var name="db_type" value="pdo_informix"/>
-    <var name="db_host" value="localhost" />
-    <var name="db_username" value="ifx4dd" />
-    <var name="db_password" value="ifx4dd" />
+    <var name="db_host" value="@ifx-host@" />
+    <var name="db_username" value="@ifx-user@" />
+    <var name="db_password" value="@ifx-password@" />
     <var name="db_name" value="ifx4dd_test" />
     <var name="db_port" value="@ifx-port@"/>
     <var name="db_protocol" value="onsoctcp"/>
@@ -26,9 +26,9 @@
 
     <!-- Database for temporary connections -->
     <var name="tmpdb_type" value="pdo_informix"/>
-    <var name="tmpdb_host" value="localhost" />
-    <var name="tmpdb_username" value="ifx4dd" />
-    <var name="tmpdb_password" value="ifx4dd" />
+    <var name="tmpdb_host" value="@ifx-host@" />
+    <var name="tmpdb_username" value="@ifx-user@" />
+    <var name="tmpdb_password" value="@ifx-password@" />
     <var name="tmpdb_name" value="ifx4dd_test_tmp" />
     <var name="tmpdb_port" value="@ifx-port@"/>
     <var name="tmpdb_protocol" value="onsoctcp"/>

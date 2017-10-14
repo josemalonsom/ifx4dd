@@ -37,6 +37,15 @@
         </antcall>
     </target>
 
+    <target name="informix-docker" description="Test Informix 12.10 in a docker container">
+        <antcall target="runtests">
+            <param name="ifx-user" value="informix" />
+            <param name="ifx-password" value="in4mix" />
+            <param name="ifx-port" value="9088" />
+            <param name="ifx-server" value="dev" />
+        </antcall>
+    </target>
+
     <target name="test-with-report-generation" description="Test with report generation">
         <antcall target="runtests">
             <param name="ifx-port" value="9088" />
@@ -119,8 +128,25 @@
 
     <target name="create-phpunit-config">
 
+        <condition property="ifx-user" value="ifx4dd">
+            <not>
+                <isset property="ifx-user" />
+            </not>
+        </condition>
+
+        <condition property="ifx-password" value="ifx4dd">
+            <not>
+                <isset property="ifx-password" />
+            </not>
+        </condition>
+
+        <exec executable="hostname" outputproperty="ifx-host"/>
+
         <copy file="${phpunit-config-template}" tofile="${phpunit-config}" overwrite="true">
             <filterset>
+                <filter token="ifx-user" value="${ifx-user}"/>
+                <filter token="ifx-password" value="${ifx-password}"/>
+                <filter token="ifx-host" value="${ifx-host}"/>
                 <filter token="ifx-port" value="${ifx-port}"/>
                 <filter token="ifx-server" value="${ifx-server}"/>
             </filterset>
