@@ -36,7 +36,7 @@ class InformixSchemaManager extends AbstractSchemaManager
     public function listTableNames()
     {
         $sql = $this->_platform->getListTablesSQL();
-        $sql .= " AND UPPER(OWNER) = UPPER('".$this->_conn->getUsername()."')";
+        $sql .= " AND tabid > 99";
 
         $tables = $this->_conn->fetchAll($sql);
         $tableNames = $this->_getPortableTablesList($tables);
