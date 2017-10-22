@@ -9,7 +9,7 @@ branches:
 
 before_install:
   - docker pull josemalonsom/ifx4dd
-  - docker run -it --name ifx4dd --privileged -p 9088:9088 -p 9089:9089 -p 27017:27017 -p 27018:27018 -p 27883:27883 -e LICENSE=accept josemalonsom/ifx4dd:latest
+  - docker run -t --name ifx4dd --privileged -p 9088:9088 -p 9089:9089 -p 27017:27017 -p 27018:27018 -p 27883:27883 -e LICENSE=accept josemalonsom/ifx4dd:latest
 
 script:
   - docker ps -a
