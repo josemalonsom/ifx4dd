@@ -19,7 +19,7 @@
     <var name="db_host" value="@ifx-host@" />
     <var name="db_username" value="@ifx-user@" />
     <var name="db_password" value="@ifx-password@" />
-    <var name="db_name" value="ifx4dd_test" />
+    <var name="db_name" value="@ifx-dbname@" />
     <var name="db_port" value="@ifx-port@"/>
     <var name="db_protocol" value="onsoctcp"/>
     <var name="db_server" value="@ifx-server@"/>
@@ -29,7 +29,7 @@
     <var name="tmpdb_host" value="@ifx-host@" />
     <var name="tmpdb_username" value="@ifx-user@" />
     <var name="tmpdb_password" value="@ifx-password@" />
-    <var name="tmpdb_name" value="ifx4dd_test_tmp" />
+    <var name="tmpdb_name" value="@ifx-tmp-dbname@" />
     <var name="tmpdb_port" value="@ifx-port@"/>
     <var name="tmpdb_protocol" value="onsoctcp"/>
     <var name="tmpdb_server" value="@ifx-server@"/>

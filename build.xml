@@ -21,6 +21,9 @@
     <property name="phpunit-config" value="${basedir}/build/phpunit.xml" />
     <property name="phpunit-config-template" value="${basedir}/build/phpunit-template.xml" />
 
+    <property name="ifx-dbname" value="ifx4dd_test" />
+    <property name="ifx-tmp-dbname" value="ifx4dd_test_tmp" />
+
     <target name="test-all" depends="informix-1170, informix-1210" description="Test all Informix versions" />
 
     <target name="informix-1170" description="Test Informix 11.70">
@@ -96,9 +99,26 @@
         </condition>
 
         <antcall target="create-phpunit-config" />
+        <antcall target="create-test-databases" />
 
         <foreach target="phpunit" param="php-version" list="${php-versions}" />
 
+    </target>
+
+    <target name="create-test-databases">
+
+        <for list="${ifx-dbname}, ${ifx-tmp-dbname}" param="dbname">
+            <sequential>
+                <exec executable="bash" failonerror="true">
+                    <arg value="-c" />
+                    <arg value="echo 'drop database if exists @{dbname}' | dbaccess -e" />
+                </exec>
+                <exec executable="bash" failonerror="true">
+                    <arg value="-c" />
+                    <arg value="echo 'create database @{dbname}' | dbaccess -e" />
+                </exec>
+            </sequential>
+        </for>
     </target>
 
     <target name="phpunit">
@@ -149,6 +169,8 @@
                 <filter token="ifx-host" value="${ifx-host}"/>
                 <filter token="ifx-port" value="${ifx-port}"/>
                 <filter token="ifx-server" value="${ifx-server}"/>
+                <filter token="ifx-dbname" value="${ifx-dbname}"/>
+                <filter token="ifx-tmp-dbname" value="${ifx-tmp-dbname}"/>
             </filterset>
         </copy>
 
