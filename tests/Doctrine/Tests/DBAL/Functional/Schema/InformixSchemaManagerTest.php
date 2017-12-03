@@ -341,4 +341,14 @@ class InformixSchemaManagerTest extends SchemaManagerFunctionalTestCase
 
         $this->_conn->getConfiguration()->setFilterSchemaAssetsExpression(null);
     }
+
+    public function testComparatorShouldReturnFalseWhenLegacyJsonArrayColumnHasComment() : void
+    {
+        $this->markTestSkipped('Informix doesn\'t support comments neither has a native JSON type');
+    }
+
+    public function testComparatorShouldModifyOnlyTheCommentWhenUpdatingFromJsonArrayTypeOnLegacyPlatforms() : void
+    {
+        $this->markTestSkipped('Informix doesn\'t support comments neither has a native JSON type');
+    }
 }
