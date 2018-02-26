@@ -20,6 +20,7 @@
 namespace Doctrine\DBAL\Portability;
 
 use Doctrine\DBAL\Cache\QueryCacheProfile;
+use Doctrine\DBAL\ColumnCase;
 
 /**
  * Portability wrapper for a Connection.
@@ -47,12 +48,12 @@ class Connection extends \Doctrine\DBAL\Connection
     const PORTABILITY_INFORMIX          = 13;
 
     /**
-     * @var integer
+     * @var int
      */
     private $portability = self::PORTABILITY_NONE;
 
     /**
-     * @var integer
+     * @var int
      */
     private $case;
 
@@ -91,7 +92,7 @@ class Connection extends \Doctrine\DBAL\Connection
                     // make use of c-level support for case handling
                     $this->_conn->setAttribute(\PDO::ATTR_CASE, $params['fetch_case']);
                 } else {
-                    $this->case = ($params['fetch_case'] == \PDO::CASE_LOWER) ? CASE_LOWER : CASE_UPPER;
+                    $this->case = ($params['fetch_case'] === ColumnCase::LOWER) ? CASE_LOWER : CASE_UPPER;
                 }
             }
         }
@@ -100,7 +101,7 @@ class Connection extends \Doctrine\DBAL\Connection
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getPortability()
     {
@@ -108,7 +109,7 @@ class Connection extends \Doctrine\DBAL\Connection
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getFetchCase()
     {

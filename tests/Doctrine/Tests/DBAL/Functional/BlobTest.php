@@ -2,8 +2,8 @@
 
 namespace Doctrine\Tests\DBAL\Functional;
 
+use Doctrine\DBAL\ParameterType;
 use Doctrine\DBAL\Types\Type;
-use PDO;
 
 /**
  * @group DBAL-6
@@ -37,10 +37,17 @@ class BlobTest extends \Doctrine\Tests\DbalFunctionalTestCase
 
     public function testInsert()
     {
-        $ret = $this->_conn->insert('blob_table',
-            array('id' => 1, 'clobfield' => 'test', 'blobfield' => 'test', 'binaryfield' => 'test'),
-            array(\PDO::PARAM_INT, \PDO::PARAM_STR, \PDO::PARAM_LOB, \PDO::PARAM_LOB)
-        );
+        $ret = $this->_conn->insert('blob_table', [
+            'id'          => 1,
+            'clobfield'   => 'test',
+            'blobfield'   => 'test',
+            'binaryfield' => 'test',
+        ], [
+            ParameterType::INTEGER,
+            ParameterType::STRING,
+            ParameterType::LARGE_OBJECT,
+            ParameterType::LARGE_OBJECT,
+        ]);
 
         $ret = $this->_conn->query('SELECT COUNT(*) FROM blob_table WHERE id = 1')->fetchColumn(0);
 
@@ -49,10 +56,17 @@ class BlobTest extends \Doctrine\Tests\DbalFunctionalTestCase
 
     public function testSelect()
     {
-        $this->_conn->insert('blob_table',
-            array('id' => 1, 'clobfield' => 'test', 'blobfield' => 'test', 'binaryfield' => 'test'),
-            array(\PDO::PARAM_INT, \PDO::PARAM_STR, \PDO::PARAM_LOB, \PDO::PARAM_LOB)
-        );
+        $this->_conn->insert('blob_table', [
+            'id'          => 1,
+            'clobfield'   => 'test',
+            'blobfield'   => 'test',
+            'binaryfield' => 'test',
+        ], [
+            ParameterType::INTEGER,
+            ParameterType::STRING,
+            ParameterType::LARGE_OBJECT,
+            ParameterType::LARGE_OBJECT,
+        ]);
 
         $this->assertBlobContains('test');
     }
@@ -63,16 +77,26 @@ class BlobTest extends \Doctrine\Tests\DbalFunctionalTestCase
             $this->markTestSkipped('This test does not work on pdo_informix, see: https://bugs.php.net/bug.php?id=71330');
         }
 
-        $this->_conn->insert('blob_table',
-            array('id' => 1, 'clobfield' => 'test', 'blobfield' => 'test', 'binaryfield' => 'test'),
-            array(\PDO::PARAM_INT, \PDO::PARAM_STR, \PDO::PARAM_LOB, \PDO::PARAM_LOB)
-        );
+        $this->_conn->insert('blob_table', [
+            'id' => 1,
+            'clobfield' => 'test',
+            'blobfield' => 'test',
+            'binaryfield' => 'test',
+        ], [
+            ParameterType::INTEGER,
+            ParameterType::STRING,
+            ParameterType::LARGE_OBJECT,
+            ParameterType::LARGE_OBJECT,
+        ]);
 
-        $this->_conn->update('blob_table',
-            array('blobfield' => 'test2', 'binaryfield' => 'test2'),
-            array('id' => 1),
-            array(\PDO::PARAM_LOB, \PDO::PARAM_LOB, \PDO::PARAM_INT)
-        );
+        $this->_conn->update('blob_table', [
+            'blobfield' => 'test2',
+            'binaryfield' => 'test2',
+        ], ['id' => 1], [
+            ParameterType::LARGE_OBJECT,
+            ParameterType::LARGE_OBJECT,
+            ParameterType::INTEGER,
+        ]);
 
         $this->assertBlobContains('test2');
         $this->assertBinaryContains('test2');
