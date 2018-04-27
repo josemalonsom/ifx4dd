@@ -4,6 +4,8 @@ namespace Doctrine\Tests\DBAL\Functional\Driver;
 
 use Doctrine\DBAL\Driver\PDOConnection;
 use Doctrine\Tests\DbalFunctionalTestCase;
+use function extension_loaded;
+use function sprintf;
 
 class PDOConnectionTest extends DbalFunctionalTestCase
 {
@@ -48,7 +50,7 @@ class PDOConnectionTest extends DbalFunctionalTestCase
             $this->markTestSkipped('This test does not apply to PDO_INFORMIX');
         }
 
-        $this->assertFalse($this->driverConnection->requiresQueryForServerVersion());
+        self::assertFalse($this->driverConnection->requiresQueryForServerVersion());
     }
 
     /**
