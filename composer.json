@@ -13,7 +13,7 @@
     },
     "require-dev": {
         "ext-pdo_sqlite": "*",
-        "phpunit/phpunit": "^5.4.6",
+        "phpunit/phpunit": "^7.0",
         "phpunit/phpunit-mock-objects": "!=3.2.4,!=3.2.5",
         "symfony/console": "2.*||^3.0"
     },
