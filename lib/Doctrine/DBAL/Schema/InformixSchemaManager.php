@@ -305,7 +305,7 @@ class InformixSchemaManager extends AbstractSchemaManager
         $sequence = array_change_key_case($sequence, \CASE_LOWER);
 
         return new Sequence(
-            $sequence['sequence'], $sequence['inc_val'], $sequence['start_val']
+            $sequence['sequence'], (int) $sequence['inc_val'], (int) $sequence['start_val']
         );
     }
 
