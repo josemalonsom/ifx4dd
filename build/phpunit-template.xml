@@ -56,6 +56,9 @@
 
             <!-- next covered by ../tests/Doctrine/Tests/DBAL/Functional/ConnectionTest.php -->
             <exclude>../vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/ConnectionTest.php</exclude>
+
+            <!-- doesn't work on Informix (it's not possible to use a binary field as primary key) -->
+            <exclude>./vendor/doctrine/dbal/tests/Doctrine/Tests/DBAL/Functional/Types/BinaryTest.php</exclude>
         </testsuite>
     </testsuites>
 
