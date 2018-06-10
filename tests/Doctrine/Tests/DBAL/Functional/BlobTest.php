@@ -28,6 +28,7 @@ class BlobTest extends \Doctrine\Tests\DbalFunctionalTestCase
         $table->addColumn('id', 'integer');
         $table->addColumn('clobfield', 'text');
         $table->addColumn('blobfield', 'blob');
+        $table->addColumn('binaryfield', 'binary', array('length' => 50));
         $table->setPrimaryKey(['id']);
 
         $sm = $this->_conn->getSchemaManager();
