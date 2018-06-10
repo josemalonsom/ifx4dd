@@ -2,7 +2,9 @@
 
 namespace Doctrine\Tests\DBAL\Functional;
 
+use Doctrine\DBAL\Driver\PDOSqlsrv\Driver as PDOSQLSrvDriver;
 use Doctrine\DBAL\ParameterType;
+use Doctrine\DBAL\Schema\Table;
 use Doctrine\DBAL\Types\Type;
 use const CASE_LOWER;
 use function array_change_key_case;
@@ -17,25 +19,19 @@ class BlobTest extends \Doctrine\Tests\DbalFunctionalTestCase
     {
         parent::setUp();
 
-        if ($this->_conn->getDriver() instanceof \Doctrine\DBAL\Driver\PDOSqlsrv\Driver) {
+        if ($this->_conn->getDriver() instanceof PDOSQLSrvDriver) {
             $this->markTestSkipped('This test does not work on pdo_sqlsrv driver due to a bug. See: http://social.msdn.microsoft.com/Forums/sqlserver/en-US/5a755bdd-41e9-45cb-9166-c9da4475bb94/how-to-set-null-for-varbinarymax-using-bindvalue-using-pdosqlsrv?forum=sqldriverforphp');
         }
 
-        try {
-            /* @var $sm \Doctrine\DBAL\Schema\AbstractSchemaManager */
-            $table = new \Doctrine\DBAL\Schema\Table("blob_table");
-            $table->addColumn('id', 'integer');
-            $table->addColumn('clobfield', 'text');
-            $table->addColumn('blobfield', 'blob');
-            $table->addColumn('binaryfield', 'binary', array('length' => 50));
-            $table->setPrimaryKey(array('id'));
+        /* @var $sm \Doctrine\DBAL\Schema\AbstractSchemaManager */
+        $table = new Table('blob_table');
+        $table->addColumn('id', 'integer');
+        $table->addColumn('clobfield', 'text');
+        $table->addColumn('blobfield', 'blob');
+        $table->setPrimaryKey(['id']);
 
-            $sm = $this->_conn->getSchemaManager();
-            $sm->createTable($table);
-        } catch(\Exception $e) {
-
-        }
-        $this->_conn->exec($this->_conn->getDatabasePlatform()->getTruncateTableSQL('blob_table'));
+        $sm = $this->_conn->getSchemaManager();
+        $sm->dropAndCreateTable($table);
     }
 
     public function testInsert()

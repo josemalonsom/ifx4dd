@@ -5,7 +5,6 @@ namespace Doctrine\Tests\DBAL\Functional;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
 use Doctrine\DBAL\ParameterType;
-use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Platforms\TrimMode;
 use Doctrine\DBAL\Types\Type;
 use const CASE_LOWER;
