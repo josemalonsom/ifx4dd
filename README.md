@@ -1,5 +1,7 @@
 
-# Informix Platform for Doctrine DBAL
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
+# DEPRECATED Informix Platform for Doctrine DBAL
 
 The *Informix Platform for Doctrine DBAL*  gives support for Informix to
 [Doctrine\DBAL](http://www.doctrine-project.org/projects/dbal.html) the database
